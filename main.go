@@ -98,7 +98,12 @@ func calcProfit(value int, profit *int) {
 func GenerateRandomSlice(n int) []int {
 	s := make([]int, n)
 	for i := 0; i < n; i++ {
-		s[i] = rand.Intn(7) // 0-7のランダムな数字を生成
+		generate := func() int {
+			arr := []int{0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6}
+			num := rand.Intn(len(arr))
+			return arr[num]
+		}
+		s[i] = generate()
 	}
 	return s
 }
