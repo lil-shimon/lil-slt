@@ -37,6 +37,17 @@ func main() {
 		fmt.Println("")
 		drawSlot(slot)
 		fmt.Println("")
+
+		res := calc(slot)
+
+		profit := res * bet
+
+		if res > 0 {
+			fmt.Printf("%v円もうけました", profit)
+			fmt.Println("")
+		}
+
+		money = money + profit
 	}
 
 	fmt.Println("ゲームオーバー")
@@ -48,6 +59,38 @@ func drawSlot(slot [][]int) {
 			fmt.Printf("%d ", slot[x][y])
 		}
 		fmt.Println()
+	}
+}
+
+func calc(slot [][]int) int {
+	res := 0
+	for x := 0; x < 3; x++ {
+		if slot[x][0] == slot[x][1] && slot[x][0] == slot[x][2] {
+			calcProfit(slot[x][0], &res)
+		}
+		for y := 0; y < 3; y++ {
+			if slot[0][y] == slot[1][y] && slot[0][y] == slot[2][y] {
+				calcProfit(slot[0][y], &res)
+			}
+		}
+	}
+	return res
+}
+
+func calcProfit(value int, profit *int) {
+	switch value {
+	case 0:
+		*profit += 1
+	case 1:
+		*profit += 1
+	case 2:
+		*profit += 2
+	case 3:
+		*profit += 4
+	case 5:
+		*profit += 10
+	case 6:
+		*profit += 20
 	}
 }
 
