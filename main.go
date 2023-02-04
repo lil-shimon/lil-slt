@@ -9,28 +9,28 @@ import (
 func main() {
 
 	var bet int
-	money := 100
+	coin := 100
 
-	for money > 0 {
-		fmt.Printf("所持金は残り%v円です", money)
+	for coin > 0 {
+		fmt.Printf("所持金は残り%vコインです", coin)
 		fmt.Println("")
 		fmt.Println("いくらBETしますか?:")
 		fmt.Scan(&bet)
 
-		if bet > money {
+		if bet > coin {
 			fmt.Println("所持金より少ない額でBETしてください。")
 			fmt.Println("")
 			continue
 		}
 
 		if bet == 0 {
-			fmt.Println("掛け金は１円以上で入力してください")
+			fmt.Println("1コイン以上でBETしてください")
 			fmt.Println("")
 			continue
 		}
 
-		fmt.Printf("%v円BETします\n", bet)
-		money = money - bet
+		fmt.Printf("%vコインBETします\n", bet)
+		coin = coin - bet
 
 		slot := Generate3x3Slice()
 
@@ -43,11 +43,12 @@ func main() {
 		profit := res * bet
 
 		if res > 0 {
-			fmt.Printf("%v円もうけました", profit)
+			fmt.Println("おめでとう!!!!!")
+			fmt.Printf("%vコイン増えました", profit)
 			fmt.Println("")
 		}
 
-		money = money + profit
+		coin = coin + profit
 	}
 
 	fmt.Println("ゲームオーバー")
