@@ -55,11 +55,18 @@ func main() {
 }
 
 func drawSlot(slot [][]int) {
+	fmt.Println("-------------")
 	for x := 0; x < 3; x++ {
 		for y := 0; y < 3; y++ {
+			if y == 0 {
+				fmt.Printf("| ")
+			}
 			fmt.Printf("%d ", slot[x][y])
+			fmt.Printf("| ")
+
 		}
 		fmt.Println()
+		fmt.Println("-------------")
 	}
 }
 
