@@ -32,7 +32,7 @@ func main() {
 		fmt.Printf("%vコインBETします\n", bet)
 		coin = coin - bet
 
-		slot := Generate3x3Slice()
+		slot := generate3x3Slice()
 
 		fmt.Println("")
 		drawSlot(slot)
@@ -95,22 +95,22 @@ func calcProfit(value int, profit *int) {
 	}
 }
 
-func GenerateRandomSlice(n int) []int {
+func generateRandomSlice(n int) []int {
 	s := make([]int, n)
 	for i := 0; i < n; i++ {
 		generate := func() int {
-			arr := []int{0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6}
-			num := rand.Intn(len(arr))
-			return arr[num]
+			slotNumbers := []int{0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6}
+			index := rand.Intn(len(slotNumbers))
+			return slotNumbers[index]
 		}
 		s[i] = generate()
 	}
 	return s
 }
 
-func Generate3x3Slice() [][]int {
+func generate3x3Slice() [][]int {
 	rand.Seed(time.Now().UnixNano())
-	s := GenerateRandomSlice(9) // 9つの要素を持つスライスを生成
+	s := generateRandomSlice(9) // 9つの要素を持つスライスを生成
 	return [][]int{
 		{s[0], s[1], s[2]},
 		{s[3], s[4], s[5]},
